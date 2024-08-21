@@ -24,7 +24,16 @@ import app.revanced.patches.grindr.firebase.patch.FirebaseGetCertPatchGrindr
     description = "Unlocks unlimited features.",
     dependencies = [FirebaseGetCertPatchGrindr::class],
     compatiblePackages = [
-        CompatiblePackage("com.grindrapp.android", ["24.2.2"]),
+        CompatiblePackage(
+            "com.grindrapp.android",
+            [
+                "24.9.0",
+                "24.10.0",
+                "24.11.0",
+                "24.12.0",
+                "24.13.0",
+            ],
+        ),
     ],
 )
 class UnlockUnlimitedPatch : BytecodePatch(

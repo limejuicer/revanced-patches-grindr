@@ -1,4 +1,4 @@
-package app.revanced.patches.grindr.spoof
+package app.revanced.patches.grindr.spoof.patch
 
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
@@ -24,10 +24,10 @@ import app.revanced.util.exception
                 "24.13.0",
             ],
         ),
-    ],
-    use = false,
+    ]
 )
-@Suppress("unused")
+
+
 object SpoofAndroidDeviceIdPatch : BytecodePatch(
     setOf(GetAndroidIDFingerprint),
 ) {
