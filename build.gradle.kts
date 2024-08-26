@@ -7,7 +7,7 @@ plugins {
     signing
 }
 
-group = "app.revanced"
+group = "patches.grindr"
 
 repositories {
     mavenCentral()
