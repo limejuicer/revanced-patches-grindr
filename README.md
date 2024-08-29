@@ -1,11 +1,11 @@
-[![Release](https://github.com/Slenderman00/revanced-patches-grindr/actions/workflows/release.yml/badge.svg)](https://github.com/Slenderman00/revanced-patches-grindr/actions/workflows/release.yml)
+[![Release](https://github.com/LG33/revanced-patches-grindr/actions/workflows/release.yml/badge.svg)](https://github.com/LG33/revanced-patches-grindr/actions/workflows/release.yml)
 
 # 🤙 ReVanced Patches for Grindr
 This patch unlocks "Unlimited" functionality in the Grindr application.
 
 # Usage 
 To use this project:
-Make ```Slenderman00``` the patches organization for your revanced app and make ```revanced-patches-grindr``` the Source
+Make ```LG33``` the patches organization for your revanced app and make ```revanced-patches-grindr``` the Source
 
 ![image](https://i.imgur.com/f9Y9S4l.png)
 ---
