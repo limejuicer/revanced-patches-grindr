@@ -7,7 +7,6 @@ import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.stringPatchOption
 import app.revanced.patches.grindr.spoof.fingerprints.GetAndroidIDFingerprint
-import app.revanced.util.exception
 
 @Patch(
     name = "Spoof Android device ID",
