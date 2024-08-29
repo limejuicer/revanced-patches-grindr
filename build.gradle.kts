@@ -1,10 +1,8 @@
 import org.gradle.kotlin.dsl.support.listFilesOrdered
 
 plugins {
-    alias(libs.plugins.kotlin)
-    alias(libs.plugins.binary.compatibility.validator)
+    kotlin("jvm") version "1.9.10"
     `maven-publish`
-    signing
 }
 
 group = "patches.grindr"
@@ -13,43 +11,42 @@ repositories {
     mavenCentral()
     mavenLocal()
     google()
-    maven {
-        // A repository must be speficied for some reason. "registry" is a dummy.
-        url = uri("https://maven.pkg.github.com/revanced/registry")
-        credentials {
-            username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_ACTOR")
-            password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
-        }
-    }
+    maven { url = uri("https://jitpack.io") }
 }
 
 dependencies {
     implementation(libs.revanced.patcher)
     implementation(libs.smali)
+    // TODO: Required because build fails without it. Find a way to remove this dependency.
+    implementation(libs.guava)
+    // Used in JsonGenerator.
+    implementation(libs.gson)
+
+    // A dependency to the Android library unfortunately fails the build, which is why this is required.
+    compileOnly(project("dummy"))
 }
 
 kotlin {
     jvmToolchain(11)
 }
 
-tasks {
-    withType(Jar::class) {
-        manifest {
-            attributes["Name"] = "Grindr ReVanced Patches"
-            attributes["Description"] = "Grindr Patches template for ReVanced."
-            attributes["Version"] = version
-            attributes["Timestamp"] = System.currentTimeMillis().toString()
-            attributes["Source"] = "git@github.com:lg33/revanced-patches-grindr.git"
-            attributes["Author"] = "LG33"
-            attributes["Contact"] = "contact@lgaillard.fr"
-            attributes["Origin"] = "https://lgaillard.fr"
-            attributes["License"] = "GNU General Public License v3.0"
-        }
+tasks.withType(Jar::class) {
+    manifest {
+        attributes["Name"] = "Grindr patches"
+        attributes["Description"] = "Patches for Grindr."
+        attributes["Version"] = version
+        attributes["Timestamp"] = System.currentTimeMillis().toString()
+        attributes["Source"] = "git@github.com:LG33/revanced-patches-grindr.git"
+        attributes["Author"] = "You"
+        attributes["Contact"] = "louisgaillard33@gmail.com"
+        attributes["Origin"] = "https://lgaillard.fr
+        attributes["License"] = "GNU General Public License v3.0"
     }
+}
 
-    register("buildDexJar") {
-        description = "Build and add a DEX to the JAR file"
-        group = "build"
+tasks {
+    register<DefaultTask>("generateBundle") {
+        description = "Generate DEX files and add them in the JAR file"
 
         dependsOn(build)
 
@@ -57,48 +54,37 @@ tasks {
             val d8 = File(System.getenv("ANDROID_HOME")).resolve("build-tools")
                 .listFilesOrdered().last().resolve("d8").absolutePath
 
-            val patchesJar = configurations.archives.get().allArtifacts.files.files.first().absolutePath
+            val artifacts = configurations.archives.get().allArtifacts.files.files.first().absolutePath
             val workingDirectory = layout.buildDirectory.dir("libs").get().asFile
 
             exec {
                 workingDir = workingDirectory
-                commandLine = listOf(d8, "--release", patchesJar)
+                commandLine = listOf(d8, artifacts)
             }
 
             exec {
                 workingDir = workingDirectory
-                commandLine = listOf("zip", "-u", patchesJar, "classes.dex")
+                commandLine = listOf("zip", "-u", artifacts, "classes.dex")
             }
         }
     }
 
-    // Needed by gradle-semantic-release-plugin.
+    // Required to run tasks because Gradle semantic-release plugin runs the publish task.
     // Tracking: https://github.com/KengoTODA/gradle-semantic-release-plugin/issues/435
-    publish {
-        dependsOn("buildDexJar")
+    named("publish") {
+        dependsOn("generateBundle")
     }
 }
 
 publishing {
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/revanced/revanced-patches-template")
-            credentials {
-                username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_TOKEN")
-            }
-        }
-    }
-
     publications {
         create<MavenPublication>("revanced-patches-publication") {
             from(components["java"])
 
             pom {
-                name = "Grindr ReVanced Patches template"
-                description = "Grindr Patches template for ReVanced."
-                url = "https://lgaillard.fr"
+                name = "Grindr patches"
+                description = "Patches for Grindr."
+                url = "https://lgaillard.fr
 
                 licenses {
                     license {
@@ -110,21 +96,15 @@ publishing {
                     developer {
                         id = "LG33"
                         name = "LG33"
-                        email = "contact@lgaillard.fr"
+                        email = "louisgaillard33@gmail.com"
                     }
                 }
                 scm {
-                    connection = "scm:git:git://github.com/lg33/revanced-patches-grindr.git"
-                    developerConnection = "scm:git:git@github.com:lg33/revanced-patches-grindr.git"
-                    url = "https://github.com/lg33/revanced-patches-grindr"
+                    connection = "scm:git:git://github.com/you/revanced-patches.git"
+                    developerConnection = "scm:git:git@github.com:LG33/revanced-patches-grindr.git"
+                    url = "https://github.com/LG33/revanced-patches-grindr/"
                 }
             }
         }
     }
-}
-
-signing {
-    useGpgCmd()
-
-    sign(publishing.publications["revanced-patches-publication"])
 }
