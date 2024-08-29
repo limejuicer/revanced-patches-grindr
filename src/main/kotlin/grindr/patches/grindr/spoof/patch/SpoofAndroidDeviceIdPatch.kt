@@ -45,5 +45,5 @@ object SpoofAndroidDeviceIdPatch : BytecodePatch(
             const-string v0, "$androidDeviceId"
             return-object v0
         """,
-    )
+    ) ?: throw Exception("Something wrong happened")
 }
