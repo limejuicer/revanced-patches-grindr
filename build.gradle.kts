@@ -39,7 +39,7 @@ tasks.withType(Jar::class) {
         attributes["Source"] = "git@github.com:LG33/revanced-patches-grindr.git"
         attributes["Author"] = "You"
         attributes["Contact"] = "louisgaillard33@gmail.com"
-        attributes["Origin"] = "https://lgaillard.fr
+        attributes["Origin"] = "https://lgaillard.fr"
         attributes["License"] = "GNU General Public License v3.0"
     }
 }
@@ -84,7 +84,7 @@ publishing {
             pom {
                 name = "Grindr patches"
                 description = "Patches for Grindr."
-                url = "https://lgaillard.fr
+                url = "https://lgaillard.fr"
 
                 licenses {
                     license {
