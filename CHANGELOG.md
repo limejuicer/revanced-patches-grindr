@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/Slenderman00/revanced-patches-grindr/compare/v1.2.0...v1.3.0) (2024-09-23)
+
+
+### Features
+
+* grindr version spoofing ([d86eacb](https://github.com/Slenderman00/revanced-patches-grindr/commit/d86eacbe0083b09b97586dbfbf021fd33bcab4c1))
+
 # [1.2.0](https://github.com/Slenderman00/revanced-patches-grindr/compare/v1.1.4...v1.2.0) (2024-04-08)
 
 
