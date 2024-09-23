@@ -57,7 +57,7 @@ class SpoofVersionPatch : BytecodePatch(
 
     override fun execute(context: BytecodeContext) {        
         val appConfigurationFingerprintMethod = AppConfigurationFingerprint.result!!.mutableMethod
-        appConfigurationFingerprintMethod.replaceInstructions(11, """const-string v9, "{$grindrVersion}"""")
+        appConfigurationFingerprintMethod.replaceInstructions(11, """const-string v9, "${grindrVersion}"""")
         appConfigurationFingerprintMethod.replaceInstructions(88, """const-string v1, "${grindrVersion}.${grindrVersionIdentifier}"""")
     }
 }
