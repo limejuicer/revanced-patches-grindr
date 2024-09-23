@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/Slenderman00/revanced-patches-grindr/compare/v1.3.0...v1.3.1) (2024-09-23)
+
+
+### Bug Fixes
+
+* revert merge ([21409a1](https://github.com/Slenderman00/revanced-patches-grindr/commit/21409a1a2b9e811447cb9904722d32a1378b1f2a))
+
 # [1.3.0](https://github.com/Slenderman00/revanced-patches-grindr/compare/v1.2.0...v1.3.0) (2024-09-23)
 
 
