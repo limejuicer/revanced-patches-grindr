@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/Slenderman00/revanced-patches-grindr/compare/v1.3.2...v1.4.0) (2024-11-05)
+
+
+### Features
+
+* random device info header ([7335943](https://github.com/Slenderman00/revanced-patches-grindr/commit/73359430ad5fcbe21048c5a531533b61b1650e33))
+
 ## [1.3.2](https://github.com/Slenderman00/revanced-patches-grindr/compare/v1.3.1...v1.3.2) (2024-09-23)
 
 
