@@ -52,6 +52,7 @@ class UnlockUnlimitedPatch : BytecodePatch(
 
         println(bytecode_patch)
         deviceinfoFingerprint.replaceInstructions(83, bytecode_patch)
+        deviceinfoFingerprint.replaceInstructions(99, bytecode_patch)
     }
     
 }
