@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/Slenderman00/revanced-patches-grindr/compare/v1.4.0...v1.5.0) (2024-11-18)
+
+
+### Features
+
+* reverted back to 1.4.0 and fixed device id spoofing ([af02a7f](https://github.com/Slenderman00/revanced-patches-grindr/commit/af02a7f862f26da85023181cfec7282a2f154c7a))
+
 # [1.4.0](https://github.com/Slenderman00/revanced-patches-grindr/compare/v1.3.2...v1.4.0) (2024-11-05)
 
 
