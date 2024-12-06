@@ -24,7 +24,7 @@ import app.revanced.patches.grindr.firebase.patch.FirebaseGetCertPatchGrindr
     description = "Spoofs the grindr version number",
     dependencies = [FirebaseGetCertPatchGrindr::class],
     compatiblePackages = [
-        CompatiblePackage("com.grindrapp.android", ["24.9.0",
+        CompatiblePackage("com.grindrapp.android", ["24.8.0","24.9.0",
                 "24.10.0",
                 "24.11.0",
                 "24.12.0",
